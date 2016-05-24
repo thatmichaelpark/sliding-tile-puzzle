@@ -121,7 +121,9 @@ Once you have a solvable problem and an audience who'd like it solved, you have 
 - What technologies will it use?
 - What additional features will it have?
 
-Additionally, please include a pencil and paper wireframe with your answers.
+Additionally, please include a pencil and paper wireframe with your answers. Included in this repository is a [template wireframe](template.pdf) that can be printed out on 11×17 inch paper. Here's an example of how a past student used this template.
+
+![](brewify.jpg)
 
 Remember, you're _not_ expected to discover and publish a brand new idea so keep your project ideas simple. And you _must_ submit your proposals to an instructor for approval before you start translating one of your ideas into code.
 
