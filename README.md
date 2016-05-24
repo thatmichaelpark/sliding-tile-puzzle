@@ -121,7 +121,7 @@ Once you have a solvable problem and an audience who'd like it solved, you have 
 - What technologies will it use?
 - What additional features will it have?
 
-Additionally, please include a pencil and paper wireframe with your answers. Included in this repository is a [template wireframe](template.pdf) that can be printed out on 11×17 inch paper. Here's an example of how a past student used this template.
+Additionally, please include a pencil and paper wireframe with your answers. Included in this repository is a [template](template.pdf) wireframe that can be printed out on 11×17 inch paper. Here's an example of how a past student used this template.
 
 ![](brewify.jpg)
 
