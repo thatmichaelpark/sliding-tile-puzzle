@@ -17,7 +17,7 @@ During project week, you'll have approximately 24 hours of class time to impleme
 
 ### Understand the technical requirements
 
-To get started, fork and clone this repository. The technical requirements for your project are as follows.
+To get started, create a brand new repository _without_ forking. The technical requirements for your project are as follows.
 
 - Have [valid](https://validator.w3.org/nu/), well-indented, and semantic HTML.
 - Have [valid](https://jigsaw.w3.org/css-validator/), well-indented, and minimally-specific CSS.
