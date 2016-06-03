@@ -4,14 +4,14 @@
 
   $('.modal-trigger.instructions').leanModal();
   $('.modal-trigger.imageSelector').leanModal({
-    complete: function() {
+    complete: () => {
       $('#thumbnails').empty();
     }
   });
-  $('.picture-category').click(function(event) {
+  $('.picture-category').click((event) => {
     window.loadThumbnails($(event.target).text());
   });
-  $('form').submit(function(event) {
+  $('form').submit((event) => {
     event.preventDefault();
     window.loadThumbnails($('#tags').val());
   });

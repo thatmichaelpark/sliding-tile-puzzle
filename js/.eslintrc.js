@@ -2,6 +2,6 @@ module.exports = {
   extends: [
     'ryansobol/browser',
     'ryansobol/jquery',
-    'ryansobol/es5'
+    'ryansobol/es6'
   ]
 };
