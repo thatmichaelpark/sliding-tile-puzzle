@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sliding Puzzle</title>
+    <link rel="stylesheet" href="materialize/css/materialize.css">
+    <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet" type="text/css">    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <div class="overlay">
+        <div id="puzzleView" class="indigo lighten-4">
+          <div id="puzzleDiv">
+          </div>
+        </div>
+      </div>
+    </main>
+    <nav>
+      <div class="nav-wrapper indigo">
+        <a href="#" class="brand-logo center">Sliding Puzzle</a>
+        <ul id="nav-mobile" class="left">
+          <li>
+            <a class="waves-effect waves-light modal-trigger imageSelector" href="#imageSelector">New Puzzle</a>
+          </li>
+          <li>
+            <a class="waves-effect waves-light modal-trigger instructions" href="#instructions">Instructions</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="imageSelector" class="modal indigo lighten-5">
+      <div class="modal-content">
+        <h4>Choose a picture category</h4>
+          <a class="waves-effect waves-light btn indigo picture-category">Cats</a>
+          <a class="waves-effect waves-light btn indigo picture-category">Dogs</a>
+          <a class="waves-effect waves-light btn indigo picture-category">Sunsets</a>
+          <a class="waves-effect waves-light btn indigo picture-category">Mountains</a>
+          <a class="waves-effect waves-light btn indigo picture-category">Cities</a>
+          <form>
+            <label for="tags">Or enter search terms:</label>
+            <input id="tags" type="text" name="tags" value="" required>
+            <input class="waves-effect waves-light btn indigo" id="search" type="submit" name="name" value="Search">
+          </form>
+          <div id="thumbnails">
+          </div>
+      </div>
+    </div>
+    <div id="instructions" class="modal indigo lighten-5">
+      <div class="modal-content">
+        <h4>How to play</h4>
+        <ol>
+          <li>Select an image for the puzzle.
+            <p>
+              Click one of the predefined picture categories or enter custom search terms.
+              Pictures are provided by Flickr.
+            </p>
+          </li>
+          <li>Rearrange the puzzle pieces by sliding them into the empty spot.
+            <p>
+              You can click a piece to move it <span class="strikethrough">or drag it into place</span>.
+            </p>
+          </li>
+        </ol>
+      </div>
+      <div class="modal-footer indigo lighten-5">
+            <a href="#!" class=" modal-action modal-close btn-flat">OK</a>
+      </div>
+    </div>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+    <script src="materialize/js/materialize.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/selectimage.js"></script>
+    <script src="js/puzzle.js"></script>
+  </body>
+</html>

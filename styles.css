@@ -1,0 +1,60 @@
+html {
+  font-family: "Roboto", sans-serif;
+}
+.brand-logo, #instructions h4 {
+  font-family: "Unica One";
+}
+#instructions li {
+  font-size: 200%;
+  line-height: 1.1;
+}
+#instructions p {
+  font-size: 80%;
+  margin-top: 1rem;
+}
+.strikethrough {
+    text-decoration: line-through;
+}
+main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(tile-1003193_960_720.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(200, 200, 255, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#thumbnails a{
+  margin: 1rem;
+}
+#puzzleView {
+  position: relative;
+  border: 2px solid black;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#puzzleDiv {
+  position: relative;
+}
+canvas {
+  position: absolute;
+  transition: 0.2s;
+}
+#puzzleDiv > div {
+  position: absolute;
+}
