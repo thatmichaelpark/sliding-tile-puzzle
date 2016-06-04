@@ -149,11 +149,11 @@
       $('#puzzleDiv').css('height', height);
 
       // Stuff for drag&drop (someday):
-      // $('#puzzleDiv').append($('<div id="channel0" class="channel0">'));
-      // $('#puzzleDiv').append($('<div id="channel1" class="channel1">'));
-      // $('#puzzleDiv').append($('<div id="channel2" class="channel2">'));
-      // $('#puzzleDiv').append($('<div id="channel3" class="channel3">'));
-      // $('#puzzleDiv').append($('<div class="droptarget">'));
+      $('#puzzleDiv').append($('<div id="channel0" class="channel0">'));
+      $('#puzzleDiv').append($('<div id="channel1" class="channel1">'));
+      $('#puzzleDiv').append($('<div id="channel2" class="channel2">'));
+      $('#puzzleDiv').append($('<div id="channel3" class="channel3">'));
+      $('#puzzleDiv').append($('<div class="droptarget">'));
     };
 
     const renderTiles = () => {
