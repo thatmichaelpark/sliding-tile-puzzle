@@ -2,7 +2,7 @@ html {
   font-family: "Roboto", sans-serif;
 }
 .brand-logo, #instructions h4 {
-  font-family: "Unica One";
+  font-family: "Unica One", sans-serif;
 }
 #instructions li {
   font-size: 200%;
@@ -11,9 +11,6 @@ html {
 #instructions p {
   font-size: 80%;
   margin-top: 1rem;
-}
-.strikethrough {
-    text-decoration: line-through;
 }
 main {
   position: absolute;

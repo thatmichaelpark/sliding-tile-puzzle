@@ -27,6 +27,29 @@
     }
   };
 
+  const swapWithMissingTile = (clicked) => {
+    const id = clicked.id;
+    for (let i = 0; i < puzzle.size; ++i) {
+      for (let j = 0; j < puzzle.size; ++j) {
+        if (puzzle.$tiles[i][j][0].id === id) {
+          const $tile = puzzle.$tiles[i][j];
+          // $tile.css('top', puzzle.$missing.css('top'));
+          puzzle.$missing.css('top', i * puzzle.tileHeight);
+          // $tile.css('left', puzzle.$missing.css('left'));
+          puzzle.$missing.css('left', j * puzzle.tileWidth);
+          let temp = puzzle.$tiles[i][j];
+          puzzle.$tiles[i][j] = puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j];
+          puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j] = temp;
+          puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j].i = puzzle.$missing.i;
+          puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j].j = puzzle.$missing.j;
+          puzzle.$missing.i = i;
+          puzzle.$missing.j = j;
+          return;
+        }
+      }
+    }
+  };
+
   const makeClickable = function() {
   // Makes the tiles around $missing clickable.
 
@@ -52,10 +75,16 @@
         $div.css('width', width);
         $div.css('height', height);
         puzzle.$tiles[ii][jj].draggable({
+          start: (event, ui) => {
+            $(event.target).draggable({
+              'revert': true,
+              revertDuration: 0
+            });
+          },
           containment: `.${$div.attr('id')}`,
-          revert: true
+          disabled: false,
+          revert: false
         });
-        puzzle.$tiles[ii][jj].draggable('enable');
       }
     };
 
@@ -80,29 +109,27 @@
     $('.droptarget').css('left', puzzle.$missing.j * puzzle.tileWidth);
     $('.droptarget').css('width', puzzle.tileWidth);
     $('.droptarget').css('height', puzzle.tileHeight);
+    $('.droptarget').droppable({
+      drop: (event, ui) => {
+        ui.draggable.position( { my: 'center', at: 'center', of: event.target } );
+        ui.draggable.draggable( 'option', 'revert', false );
+        swapWithMissingTile(ui.draggable[0]);
+        moves += 1;
+        if (puzzle.isSolved()) {
+          $('#puzzleDiv').prepend(puzzle.$missing);
+          window.Materialize.toast(`Solved in ${moves} moves!`, 4000);
+          puzzle.$missing.i = -1;
+          puzzle.$missing.j = -1;
+        }
+        makeClickable();
+      }
+    });
   };
 
   $('#puzzleDiv').on('click', 'canvas.clickable', (event) => {
-    const $tile = $(event.target);
-    const i = parseInt($tile.css('top')) / puzzle.tileHeight;
-    const j = parseInt($tile.css('left')) / puzzle.tileWidth;
-    const swapClickedAndMissingTiles = () => {
-      let temp = $tile.css('top');
-
-      $tile.css('top', puzzle.$missing.css('top'));
-      puzzle.$missing.css('top', temp);
-      temp = $tile.css('left');
-      $tile.css('left', puzzle.$missing.css('left'));
-      puzzle.$missing.css('left', temp);
-      temp = puzzle.$tiles[i][j];
-      puzzle.$tiles[i][j] = puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j];
-      puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j] = temp;
-      puzzle.$missing.i = i;
-      puzzle.$missing.j = j;
-    };
+    swapWithMissingTile(event.target);
 
     moves += 1;
-    swapClickedAndMissingTiles();
     if (puzzle.isSolved()) {
       $('#puzzleDiv').prepend(puzzle.$missing);
       window.Materialize.toast(`Solved in ${moves} moves!`, 4000);
@@ -187,7 +214,7 @@
       let swapj;
 
       // (Increase # iterations for more thorough randomizing.)
-      for (let i = 0; i < mm; ++i) {
+      for (let i = 0; i < 7; ++i) {
         do {
           swapi = puzzle.$missing.i;
           swapj = puzzle.$missing.j;
@@ -199,13 +226,18 @@
           }
         } while (swapi < 0 || swapi >= puzzle.size ||
                  swapj < 0 || swapj >= puzzle.size);
-        const $temp = puzzle.$tiles[swapi][swapj];
 
-        puzzle.$missing = puzzle.$tiles[swapi][swapj] =
-          puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j];
-        puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j] = $temp;
-        puzzle.$missing.i = swapi;
-        puzzle.$missing.j = swapj;
+        let mi = puzzle.$missing.i;
+        let mj = puzzle.$missing.j;
+        const $temp = puzzle.$tiles[swapi][swapj];
+        puzzle.$tiles[swapi][swapj] = puzzle.$tiles[mi][mj];
+        puzzle.$tiles[swapi][swapj].i = swapi;
+        puzzle.$tiles[swapi][swapj].j = swapj;
+        puzzle.$tiles[mi][mj] = $temp;
+        puzzle.$tiles[mi][mj].i = mi;
+        puzzle.$tiles[mi][mj].j = mj;
+
+        puzzle.$missing = puzzle.$tiles[swapi][swapj];
       }
     };
 
@@ -232,7 +264,7 @@
     const img = new window.Image();
 
     img.addEventListener('load', () => {
-      makePuzzle(img, 4);
+      makePuzzle(img, 3);
     });
     img.setAttribute('src', url);
   };
