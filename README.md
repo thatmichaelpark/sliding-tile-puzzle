@@ -11,6 +11,12 @@ I received valuable feedback from my customer (Jesse) and from the UI design rev
 
 The greatest challenge I had to overcome was getting drag and drop to work, which is ironic because I had actually been experimenting with drag and drop previously and thought sliding tiles would be a piece of cake.
 
+Things left undone:
+* Enlarge puzzle to fit screen.
+* Make puzzle difficulty (# of pieces) adjustable.
+* Make responsive.
+* Display busy icon while waiting for images to load.
+
 ---
 
 
