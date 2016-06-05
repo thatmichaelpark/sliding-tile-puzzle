@@ -29,21 +29,28 @@
 
   const swapWithMissingTile = (clicked) => {
     const id = clicked.id;
+
     for (let i = 0; i < puzzle.size; ++i) {
       for (let j = 0; j < puzzle.size; ++j) {
         if (puzzle.$tiles[i][j][0].id === id) {
           const $tile = puzzle.$tiles[i][j];
-          // $tile.css('top', puzzle.$missing.css('top'));
-          puzzle.$missing.css('top', i * puzzle.tileHeight);
-          // $tile.css('left', puzzle.$missing.css('left'));
-          puzzle.$missing.css('left', j * puzzle.tileWidth);
-          let temp = puzzle.$tiles[i][j];
-          puzzle.$tiles[i][j] = puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j];
+
+          $tile.css('top', puzzle.$missing.css('top'))
+            .css('left', puzzle.$missing.css('left'));
+          puzzle.$missing.css('top', i * puzzle.tileHeight)
+            .css('left', j * puzzle.tileWidth);
+          const temp = puzzle.$tiles[i][j];
+
+          puzzle.$tiles[i][j] =
+            puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j];
           puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j] = temp;
-          puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j].i = puzzle.$missing.i;
-          puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j].j = puzzle.$missing.j;
+          puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j].i =
+            puzzle.$missing.i;
+          puzzle.$tiles[puzzle.$missing.i][puzzle.$missing.j].j =
+            puzzle.$missing.j;
           puzzle.$missing.i = i;
           puzzle.$missing.j = j;
+
           return;
         }
       }
@@ -75,9 +82,9 @@
         $div.css('width', width);
         $div.css('height', height);
         puzzle.$tiles[ii][jj].draggable({
-          start: (event, ui) => {
+          start: (event) => {
             $(event.target).draggable({
-              'revert': true,
+              revert: true,
               revertDuration: 0
             });
           },
@@ -111,8 +118,12 @@
     $('.droptarget').css('height', puzzle.tileHeight);
     $('.droptarget').droppable({
       drop: (event, ui) => {
-        ui.draggable.position( { my: 'center', at: 'center', of: event.target } );
-        ui.draggable.draggable( 'option', 'revert', false );
+        ui.draggable.position({
+          my: 'center',
+          at: 'center',
+          of: event.target
+        });
+        ui.draggable.draggable('option', 'revert', false);
         swapWithMissingTile(ui.draggable[0]);
         moves += 1;
         if (puzzle.isSolved()) {
@@ -169,18 +180,19 @@
 
       puzzle.tileWidth = Math.floor(width / puzzle.size);
       puzzle.tileHeight = Math.floor(height / puzzle.size);
-      $('#puzzleView').css('width', width + 20);
-      $('#puzzleView').css('height', height + 20);
-      $('#puzzleDiv').empty();
-      $('#puzzleDiv').css('width', width);
-      $('#puzzleDiv').css('height', height);
+      $('#puzzleView')
+        .css('width', width + 20)
+        .css('height', height + 20);
+      $('#puzzleDiv').empty()
+        .css('width', width)
+        .css('height', height);
 
-      // Stuff for drag&drop (someday):
-      $('#puzzleDiv').append($('<div id="channel0" class="channel0">'));
-      $('#puzzleDiv').append($('<div id="channel1" class="channel1">'));
-      $('#puzzleDiv').append($('<div id="channel2" class="channel2">'));
-      $('#puzzleDiv').append($('<div id="channel3" class="channel3">'));
-      $('#puzzleDiv').append($('<div class="droptarget">'));
+      $('#puzzleDiv')
+        .append($('<div id="channel0" class="channel0">'))
+        .append($('<div id="channel1" class="channel1">'))
+        .append($('<div id="channel2" class="channel2">'))
+        .append($('<div id="channel3" class="channel3">'))
+        .append($('<div class="droptarget">'));
     };
 
     const renderTiles = () => {
@@ -212,6 +224,18 @@
     const shuffleTiles = () => {
       let swapi;
       let swapj;
+      const swapTiles = () => {
+        const mi = puzzle.$missing.i;
+        const mj = puzzle.$missing.j;
+        const $temp = puzzle.$tiles[swapi][swapj];
+
+        puzzle.$tiles[swapi][swapj] = puzzle.$tiles[mi][mj];
+        puzzle.$tiles[swapi][swapj].i = swapi;
+        puzzle.$tiles[swapi][swapj].j = swapj;
+        puzzle.$tiles[mi][mj] = $temp;
+        puzzle.$tiles[mi][mj].i = mi;
+        puzzle.$tiles[mi][mj].j = mj;
+      };
 
       // (Increase # iterations for more thorough randomizing.)
       for (let i = 0; i < 7; ++i) {
@@ -227,16 +251,7 @@
         } while (swapi < 0 || swapi >= puzzle.size ||
                  swapj < 0 || swapj >= puzzle.size);
 
-        let mi = puzzle.$missing.i;
-        let mj = puzzle.$missing.j;
-        const $temp = puzzle.$tiles[swapi][swapj];
-        puzzle.$tiles[swapi][swapj] = puzzle.$tiles[mi][mj];
-        puzzle.$tiles[swapi][swapj].i = swapi;
-        puzzle.$tiles[swapi][swapj].j = swapj;
-        puzzle.$tiles[mi][mj] = $temp;
-        puzzle.$tiles[mi][mj].i = mi;
-        puzzle.$tiles[mi][mj].j = mj;
-
+        swapTiles();
         puzzle.$missing = puzzle.$tiles[swapi][swapj];
       }
     };
