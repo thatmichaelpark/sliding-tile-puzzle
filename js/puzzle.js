@@ -237,8 +237,7 @@
         puzzle.$tiles[mi][mj].j = mj;
       };
 
-      // (Increase # iterations for more thorough randomizing.)
-      for (let i = 0; i < 7; ++i) {
+      for (let i = 0; i < puzzle.size * puzzle.size * puzzle.size; ++i) {
         do {
           swapi = puzzle.$missing.i;
           swapj = puzzle.$missing.j;
@@ -279,7 +278,7 @@
     const img = new window.Image();
 
     img.addEventListener('load', () => {
-      makePuzzle(img, 3);
+      makePuzzle(img, 4);
     });
     img.setAttribute('src', url);
   };
