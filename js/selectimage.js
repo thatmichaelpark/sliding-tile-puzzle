@@ -38,6 +38,6 @@
     $('#puzzleView').show();
     event.preventDefault();
     window.createPuzzle(event.currentTarget.href);
-    $('#thumbnails').empty();
+    // $('#thumbnails').empty();
   });
 })();

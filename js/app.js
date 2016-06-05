@@ -5,7 +5,7 @@
   $('.modal-trigger.instructions').leanModal();
   $('.modal-trigger.imageSelector').leanModal({
     complete: () => {
-      $('#thumbnails').empty();
+      // $('#thumbnails').empty();
     }
   });
   $('.picture-category').click((event) => {
