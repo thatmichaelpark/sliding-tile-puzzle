@@ -1,5 +1,19 @@
 # Web Development Q1 Project
 
+---
+### Project Report
+
+My project implements a sliding tile puzzle using pictures sourced from Flickr. The tiles are moved either by clicking them or by dragging them with the mouse (dragging wasn't working on Demo Day but it is now).
+
+Technologies used in this project are HTML, CSS, and JavaScript, augmented with the jQuery and jQuery UI libraries and the Materialize framework. The Flickr API is queried for photos matching tags supplied by the user. HTML canvas elements are used to render the images onto individual tiles.
+
+I received valuable feedback from my customer (Jesse) and from the UI design review led by Ian that resulted in significant improvements to the project's appearance, readability, and usability.
+
+The greatest challenge I had to overcome was getting drag and drop to work, which is ironic because I had actually been experimenting with drag and drop previously and thought sliding tiles would be a piece of cake.
+
+---
+
+
 The goal of this project is to demonstrate your mastery of the concepts covered over the past quarter. Like your capstone, you're expected to come up with a project idea and implement it all on your own. Unlike a PhD dissertation, you are _not_ expected to discover and publish an idea that's never been done before. Asking your classmates and instructors for help throughout the process is strongly encouraged, but your work must be your own.
 
 During project week, you'll have approximately 24 hours of class time to implement your idea. It'll most likely not be enough time, so plan on allocating extra time for it outside of class. On the last day of project week, you'll give short demonstration of your project to the class.
